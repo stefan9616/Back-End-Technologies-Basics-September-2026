@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<products>
+    <product>
+        <type>Laptop</type>
+        <brand>Dell</brand>
+        <model>XPS 13</model>
+        <specs>13.4-inch display</specs>
+        <price currency="USD">1200</price>
+    </product>
+    <product>
+        <type>Smartphone</type>
+        <brand>Apple</brand>
+        <model>iPhone 12</model>
+        <specs>64GB storage</specs>
+        <price currency="USD">799</price>
+    </product>
+    <product>
+        <type>Tablet</type>
+        <brand>Samsung</brand>
+        <model>Galaxy Tab S7</model>
+        <specs>11-inch screen</specs>
+        <price currency="USD">650</price>
+    </product>
+    <product>
+        <type>Headphones</type>
+        <brand>Bose</brand>
+        <model>QuietComfort 35 II</model>
+        <specs>Noise-cancelling</specs>
+        <price currency="USD">299</price>
+    </product>
+    <product>
+        <type>Camera</type>
+        <brand>Canon</brand>
+        <model>EOS Rebel T7</model>
+        <specs>DSLR 24.1 MP</specs>
+        <price currency="USD">449</price>
+    </product>
+</products>

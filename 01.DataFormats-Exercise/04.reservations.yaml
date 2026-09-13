@@ -1,0 +1,40 @@
+reservations:
+  - id: 101
+    guest_name: "Emma Johnson"
+    services:
+      - service: "Spa"
+        date_time: "June 15th 2 PM"
+      - service: "Dinner"
+        date_time: "June 16th 8 PM"
+
+  - id: 102
+    guest_name: "John Davis"
+    services:
+      - service: "Golf"
+        date_time: "June 17th 10 AM"
+      - service: "Wine Tasting"
+        date_time: "June 18th 5 PM"
+
+  - id: 103
+    guest_name: "Sophia Lee"
+    services:
+      - service: "Yoga Class"
+        date_time: "June 19th 8 AM"
+      - service: "Brunch"
+        date_time: "June 20th 11 AM"
+
+  - id: 104
+    guest_name: "Michael Brown"
+    services:
+      - service: "Cooking Workshop"
+        date_time: "June 21st 4 PM"
+      - service: "Movie Night"
+        date_time: "June 22nd 9 PM"
+
+  - id: 105
+    guest_name: "Olivia Smith"
+    services:
+      - service: "Deep Sea Fishing"
+        date_time: "June 23rd 7 AM"
+      - service: "Evening Cruise"
+        date_time: "June 24th 6 PM"
