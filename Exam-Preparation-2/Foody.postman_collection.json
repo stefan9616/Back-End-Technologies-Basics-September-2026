@@ -1,0 +1,245 @@
+{
+  "info": {
+    "_postman_id": "fa6ee6a5-4f56-4513-947b-f7011283e2a0",
+    "name": "Foody",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "24432133",
+    "_collection_link": "https://go.postman.co/collection/24432133-fa6ee6a5-4f56-4513-947b-f7011283e2a0?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Login",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.collectionVariables.set(\"token\", pm.response.json().accessToken);\r\n\r\npm.test(\"Status code is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\npm.test(\"Response body includes username, password and accessToken\", function () {\r\n    pm.expect(pm.response.json()).to.have.property(\"username\");\r\n    pm.expect(pm.response.json()).to.have.property(\"password\");\r\n    pm.expect(pm.response.json()).to.have.property(\"accessToken\");\r\n})"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n\"userName\": \"Stefan96\", \r\n\"password\": \"Stefan9616\"\r\n}\r\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseURL}}/api/User/Authentication",
+          "host": [
+            "{{baseURL}}"
+          ],
+          "path": [
+            "api",
+            "User",
+            "Authentication"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create New Food",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "const words = [\"Salata\", \"Pizza\", \"Pasta\", \"Burger\", \"Sushi\", \"Steak\", \"Fish\", \"Chicken\", \"Taco\", \"Pancakes\"];\r\nconst randomWord = words[Math.floor(Math.random() * words.length)];\r\nconst randomDigits = Math.floor(Math.random() * 1000);\r\nconst randomFood = randomWord + randomDigits;\r\n\r\npm.collectionVariables.set(\"randomFood\", randomFood);"
+            ]
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 201\", function () {\r\n    pm.response.to.have.status(201);\r\n});\r\n\r\npm.test(\"Response body have property foodId\", function() {\r\n    pm.expect(pm.response.json()).to.have.property('foodId');\r\n});\r\n\r\npm.collectionVariables.set(\"foodId\", pm.response.json().foodId);\r\n"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n\"name\": \"{{randomFood}}\",\r\n\"description\": \"Test description for food\",\r\n\"url\": \"\"\r\n}\r\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseURL}}/api/Food/Create",
+          "host": [
+            "{{baseURL}}"
+          ],
+          "path": [
+            "api",
+            "Food",
+            "Create"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Search by Food Name",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n    const foodName = pm.variables.get(\"randomFood\");\r\n\r\npm.test(\"Response is an array and contains searched food name\", function () {\r\n    const response = pm.response.json();\r\n    const foodName = pm.variables.get(\"randomFood\");\r\n\r\n    pm.expect(response).to.be.an(\"array\");\r\n\r\n    pm.expect(\r\n        response.some(food => food.name === foodName)\r\n    ).to.be.true;\r\n});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseURL}}/api/Food/Search?keyword={{randomFood}}",
+          "host": [
+            "{{baseURL}}"
+          ],
+          "path": [
+            "api",
+            "Food",
+            "Search"
+          ],
+          "query": [
+            {
+              "key": "keyword",
+              "value": "{{randomFood}}"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Edit Name",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              ""
+            ]
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\npm.test(\"Response have successfully edited message\", function() {\r\n    pm.expect(pm.response.json().msg).to.eql(\"Successfully edited\");\r\n});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "PATCH",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "[\r\n {\r\n  \"path\": \"/name\",\r\n  \"op\": \"replace\",\r\n  \"value\": \"Skumriq na skara\"\r\n }\r\n]\r\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseURL}}/api/Food/Edit/{{foodId}}",
+          "host": [
+            "{{baseURL}}"
+          ],
+          "path": [
+            "api",
+            "Food",
+            "Edit",
+            "{{foodId}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Delete Food",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\npm.test(\"Response have Delete message\", function(){\r\n    pm.expect(pm.response.text()).to.include(\"Delete\");\r\n})"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{baseURL}}/api/Food/Delete/{{foodId}}",
+          "host": [
+            "{{baseURL}}"
+          ],
+          "path": [
+            "api",
+            "Food",
+            "Delete",
+            "{{foodId}}"
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{token}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseURL",
+      "value": "http://144.91.123.158:81"
+    },
+    {
+      "key": "randomFood",
+      "value": ""
+    },
+    {
+      "key": "foodId",
+      "value": ""
+    },
+    {
+      "key": "token",
+      "value": ""
+    }
+  ]
+}
