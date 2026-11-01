@@ -1,0 +1,58 @@
+[
+  {
+    "coinId": 801,
+    "coinName": "Caesar",
+    "mintYear": 54,
+    "origin": "Rome",
+    "era": "Roman Era",
+    "features": ["Gold", "Julius Inscription"]
+  },
+  {
+    "coinId": 802,
+    "coinName": "Solidus",
+    "mintYear": 330,
+    "origin": "Constantinople",
+    "era": "Byzantine Era",
+    "features": ["Gold", "Emperor Likeness"]
+  },
+  {
+    "coinId": 803,
+    "coinName": "Athena",
+    "mintYear": 480,
+    "origin": "Athens",
+    "era": "Greek Era",
+    "features": ["Silver", "Olive Branch"]
+  },
+  {
+    "coinId": 804,
+    "coinName": "Cash",
+    "mintYear": 1368,
+    "origin": "China",
+    "era": "Ming Era",
+    "features": ["Copper", "Square Inscription"]
+  },
+  {
+    "coinId": 805,
+    "coinName": "Sovereign",
+    "mintYear": 1817,
+    "origin": "London",
+    "era": "Victorian Era",
+    "features": ["Gold", "Dragon Slaying"]
+  },
+  {
+    "coinId": 806,
+    "coinName": "Rupee",
+    "mintYear": 1628,
+    "origin": "Mughal",
+    "era": "Imperial Era",
+    "features": ["Silver", "Emperor Calligraphy"]
+  },
+  {
+    "coinId": 807,
+    "coinName": "Florin",
+    "mintYear": 1252,
+    "origin": "Florence",
+    "era": "Renaissance Era",
+    "features": ["Gold", "Lis Symbol"]
+  }
+]
